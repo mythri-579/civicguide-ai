@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CivicGuide AI - Chat</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <h1>CivicGuide AI</h1>
+    <p>Ask about government schemes, scholarships, and public services</p>
+  </header>
+
+  <main class="chat-container">
+    <div id="chatWindow" class="chat-window">
+      <div class="message bot-message">
+        <p>Hi! Ask me anything about a scheme — eligibility, income limits, required documents, or deadlines.</p>
+      </div>
+    </div>
+
+    <div id="loadingIndicator" class="loading-indicator hidden">
+      <span>CivicGuide is thinking...</span>
+    </div>
+
+    <form id="chatForm" class="chat-input-form">
+      <input
+        type="text"
+        id="questionInput"
+        placeholder="Ask a question..."
+        autocomplete="off"
+        required
+      />
+      <button type="submit">Send</button>
+    </form>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

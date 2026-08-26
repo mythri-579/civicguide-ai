@@ -1,0 +1,10 @@
+backend/.env
+backend/venv/
+backend/__pycache__/
+backend/app/__pycache__/
+backend/app/**/__pycache__/
+*.pyc
+backend/uploads/
+backend/chroma_store/
+.DS_Store
+Thumbs.db

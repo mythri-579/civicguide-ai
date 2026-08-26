@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CivicGuide AI - Eligibility Checker</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <h1>CivicGuide AI</h1>
+    <p>Check your eligibility for a government scheme</p>
+  </header>
+
+  <main class="admin-container">
+    <section class="upload-section">
+      <h2>Eligibility Checker</h2>
+
+      <form id="eligibilityForm" class="upload-form">
+
+        <label for="schemeName">Scheme Name <span class="required">*</span></label>
+        <input type="text" id="schemeName" name="scheme_name" placeholder="e.g. Post Matric Scholarship" required />
+
+        <div class="form-row">
+          <div class="form-col">
+            <label for="age">Age <span class="required">*</span></label>
+            <input type="number" id="age" name="age" min="0" max="120" required />
+          </div>
+          <div class="form-col">
+            <label for="income">Annual Family Income (Rs.) <span class="required">*</span></label>
+            <input type="number" id="income" name="income" min="0" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-col">
+            <label for="category">Category <span class="required">*</span></label>
+            <input type="text" id="category" name="category" placeholder="e.g. OBC, SC, ST, General" required />
+          </div>
+          <div class="form-col">
+            <label for="state">State <span class="required">*</span></label>
+            <input type="text" id="state" name="state" placeholder="e.g. Tamil Nadu" required />
+          </div>
+        </div>
+
+        <label for="isStudent">Are you currently a student? <span class="required">*</span></label>
+        <select id="isStudent" name="is_student" required>
+          <option value="">Select...</option>
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+
+        <button type="submit" id="checkBtn">Check Eligibility</button>
+      </form>
+<nav class="admin-nav">
+  <a href="dashboard.html">Dashboard</a>
+  <a href="upload.html">Upload</a>
+  <a href="source-monitor.html">Source Monitor</a>
+  <a href="chat.html">Chat (User View)</a>
+</nav>
+      <div id="resultBox" class="eligibility-result hidden"></div>
+    </section>
+  </main>
+
+  <script src="js/eligibility.js"></script>
+</body>
+</html>

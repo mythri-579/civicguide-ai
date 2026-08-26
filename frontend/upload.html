@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CivicGuide AI - Admin Upload</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <button onclick="logout()" style="position: absolute; top: 20px; right: 20px; background: white; color: #0b3d91; border: 1px solid white; padding: 6px 14px; border-radius: 6px; cursor: pointer;">Logout</button>
+    <h1>CivicGuide AI — Admin</h1>
+    <p>Upload official scheme documents to the knowledge base</p>
+    <nav class="admin-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="upload.html">Upload</a>
+      <a href="source-monitor.html">Source Monitor</a>
+      <a href="chat.html">Chat (User View)</a>
+    </nav>
+  </header>
+
+  <main class="admin-container">
+
+    <section class="upload-section">
+      <h2>Upload New Document</h2>
+
+      <form id="uploadForm" class="upload-form">
+        <label for="title">Document Title <span class="required">*</span></label>
+        <input type="text" id="title" name="title" placeholder="e.g. Post Matric Scholarship Guidelines 2026-27" required />
+
+        <label for="schemeName">Scheme Name</label>
+        <input type="text" id="schemeName" name="scheme_name" placeholder="e.g. Post Matric Scholarship" />
+
+        <label for="department">Department / Ministry</label>
+        <input type="text" id="department" name="department" placeholder="e.g. Ministry of Social Justice" />
+
+        <label for="sourceUrl">Source URL</label>
+        <input type="url" id="sourceUrl" name="source_url" placeholder="https://..." />
+
+        <div class="form-row">
+          <div class="form-col">
+            <label for="academicYear">Academic Year</label>
+            <input type="text" id="academicYear" name="academic_year" placeholder="e.g. 2026-27" />
+          </div>
+          <div class="form-col">
+            <label for="version">Version</label>
+            <input type="text" id="version" name="version" placeholder="e.g. v1" />
+          </div>
+        </div>
+
+        <label for="fileInput">PDF File <span class="required">*</span></label>
+        <input type="file" id="fileInput" name="file" accept="application/pdf" required />
+
+        <button type="submit" id="submitBtn">Upload Document</button>
+      </form>
+
+      <div id="uploadStatus" class="upload-status hidden"></div>
+    </section>
+
+    <section class="documents-section">
+      <h2>Uploaded Documents</h2>
+      <div id="documentsList" class="documents-list">
+        <p class="empty-state">Loading documents...</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script src="js/upload.js"></script>
+</body>
+</html>

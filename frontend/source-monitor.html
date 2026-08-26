@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CivicGuide AI - Source Monitor</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <h1>CivicGuide AI — Admin</h1>
+    <p>Source Update Monitor</p>
+
+    <nav class="admin-nav">
+  <a href="dashboard.html">Dashboard</a>
+  <a href="upload.html">Upload</a>
+  <a href="source-monitor.html">Source Monitor</a>
+  <a href="chat.html">Chat (User View)</a>
+</nav>
+  </header>
+
+  <main class="admin-container">
+
+    <section class="upload-section">
+      <div class="monitor-header">
+        <h2>Pending Update Alerts</h2>
+        <button id="checkNowBtn">Check Now</button>
+      </div>
+      <p id="checkStatus" class="check-status hidden"></p>
+
+      <div id="alertsList" class="documents-list">
+        <p class="empty-state">Loading alerts...</p>
+      </div>
+    </section>
+
+  </main>
+  <script src="js/auth.js"></script>
+  <script src="js/source-monitor.js"></script>
+</body>
+</html>

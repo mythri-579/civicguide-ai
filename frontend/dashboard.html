@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CivicGuide AI - Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <button onclick="logout()" style="position: absolute; top: 20px; right: 20px; background: white; color: #0b3d91; border: 1px solid white; padding: 6px 14px; border-radius: 6px; cursor: pointer;">Logout</button>
+    <h1>CivicGuide AI — Admin Dashboard</h1>
+    <p id="welcomeMsg">Welcome</p>
+    <nav class="admin-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="upload.html">Upload</a>
+      <a href="source-monitor.html">Source Monitor</a>
+      <a href="chat.html">Chat (User View)</a>
+    </nav>
+  </header>
+
+  <main class="admin-container">
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number" id="totalDocs">—</div>
+        <div class="stat-label">Total Documents</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="activeDocs">—</div>
+        <div class="stat-label">Active Documents</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="pendingAlerts">—</div>
+        <div class="stat-label">Pending Update Alerts</div>
+      </div>
+    </section>
+
+    <section class="upload-section">
+      <h2>Recent Documents</h2>
+      <div id="recentDocsList" class="documents-list">
+        <p class="empty-state">Loading...</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
