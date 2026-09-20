@@ -56,8 +56,12 @@ loginForm.addEventListener("submit", async (event) => {
     showStatus(`Welcome, ${data.user.full_name || data.user.email}! Redirecting...`, "success");
 
     setTimeout(() => {
-      window.location.href = "dashboard.html";
-    }, 1000);
+  if (data.user.role === "admin") {
+    window.location.href = "dashboard.html";
+  } else {
+    window.location.href = "chat.html";
+  }
+}, 1000);
 
   } catch (error) {
     showStatus(`Error: ${error.message}`, "error");

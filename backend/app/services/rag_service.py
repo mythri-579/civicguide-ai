@@ -1,9 +1,4 @@
-from groq import Groq
-
-from app.config import GROQ_API_KEY
 from app.services.chroma_service import search_similar_chunks
-
-client = Groq(api_key=GROQ_API_KEY)
 
 
 def format_sources(metadatas: list[dict]) -> list[dict]:
@@ -16,10 +11,11 @@ def format_sources(metadatas: list[dict]) -> list[dict]:
         department = meta.get("department", "")
         source_url = meta.get("source_url", "")
 
-        key = title
+        key = f"{title}-{source_url}"
 
         if key in seen:
             continue
+
         seen.add(key)
 
         sources.append({
@@ -30,6 +26,15 @@ def format_sources(metadatas: list[dict]) -> list[dict]:
         })
 
     return sources
+
+
+def clean_text(text: str, limit: int = 900) -> str:
+    text = " ".join(text.split())
+
+    if len(text) > limit:
+        return text[:limit] + "..."
+
+    return text
 
 
 def ask_question(question: str):
@@ -44,36 +49,22 @@ def ask_question(question: str):
             "sources": []
         }
 
-    context_blocks = []
-    for i, doc in enumerate(documents):
-        source_title = metadatas[i].get("title", "Unknown Document")
-        context_blocks.append(f"[Source: {source_title}]\n{doc}")
+    answer_parts = [
+        "AI answer generation is currently unavailable, but I found relevant verified source content from the uploaded documents:",
+        ""
+    ]
 
-    context = "\n\n".join(context_blocks)
+    for index, document_text in enumerate(documents[:3], start=1):
+        metadata = metadatas[index - 1]
+        title = metadata.get("title", "Unknown Document")
 
-    prompt = f"""You are CivicGuide AI, a public-service assistant.
-Answer the user's question using ONLY the context below.
-Each context block shows which document it came from.
-If the answer is not in the context, say exactly: "Not enough verified information is available."
-Do not use outside knowledge. Do not guess.
+        answer_parts.append(f"{index}. Source: {title}")
+        answer_parts.append(clean_text(document_text))
+        answer_parts.append("")
 
-Context:
-{context}
-
-Question: {question}
-
-Give a concise, direct answer based only on the context above."""
-
-    response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.2,
-        max_tokens=500
-    )
-
-    answer = response.choices[0].message.content
+    answer_parts.append("Please verify the source text above before taking any action.")
 
     return {
-        "answer": answer,
+        "answer": "\n".join(answer_parts),
         "sources": format_sources(metadatas)
     }
